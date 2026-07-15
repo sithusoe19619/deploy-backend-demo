@@ -1,8 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const { db, UserModel } = require('./db')
-
+require('dotenv').config()
+const { db, UserModel, FoodModel } = require('./db')
 const app = express()
 const PORT = 8080
 
@@ -15,6 +15,11 @@ app.get('/users', async (req, res) => {
 
   console.log('YAY!!! I got the users ......')
   res.json(users)
+})
+
+app.get('/foods', async (req, res) => {
+  const allFoods = await FoodModel.findAll()
+  res.json(allFoods)
 })
 
 app.get('/health', (req, res) => {
