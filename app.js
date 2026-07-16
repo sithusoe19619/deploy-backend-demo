@@ -9,7 +9,7 @@ const PORT = 8080
 
 app.use(express.json())
 app.use(morgan('combined'))
-app.use(cors())
+app.use(cors({ origin: 'https://deploy-frontend-demo-delta.vercel.app' }))
 
 app.get('/users', async (req, res) => {
   const users = await UserModel.findAll()
